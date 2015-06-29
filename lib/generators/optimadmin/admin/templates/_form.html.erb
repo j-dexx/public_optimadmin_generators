@@ -31,7 +31,7 @@
     </ul>
 
     <%%= field_set_tag nil, id: 'tabs-1' do %>
-      <% attributes.reject{|x| [:image, :document, :boolean ].include?(x.type) }.each do |attribute| -%>
+      <% attributes.reject{|x| [:image, :document, :boolean ].include?(x.type) }.reject{|x| x.name == 'title' }.each do |attribute| -%>
       <div class="field">
         <%%= f.label :<%= attribute.column_name %> %><br>
         <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
