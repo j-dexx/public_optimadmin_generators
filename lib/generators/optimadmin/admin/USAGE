@@ -1,0 +1,21 @@
+Description:
+    A generator to generate admin views
+
+Example:
+    rails generate optimadmin:admin Thing
+
+    This will create:
+        controllers/optimadmin/things_controller.rb
+        views/optimadmin/things/index.html.erb
+        views/optimadmin/things/new.html.erb
+        views/optimadmin/things/edit.html.erb
+        views/optimadmin/things/_form.html.erb
+
+    rails generate admin Thing title image:image document:document display:boolean
+
+    This will create all the things above but setup image_field for the image, document_field for the document and all booleans will go into
+    the settings section of the form
+
+Useful links:
+  https://github.com/rails/rails/blob/master/railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb
+  http://guides.rubyonrails.org/active_support_core_extensions.html#strip-heredoc

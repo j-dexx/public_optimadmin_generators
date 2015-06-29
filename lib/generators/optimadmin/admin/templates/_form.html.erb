@@ -1,0 +1,65 @@
+<%%= form_for(<%= singular_table_name %>) do |f| %>
+<%% if <%= singular_table_name %>.errors.any? %>
+  <div id="error_explanation">
+    <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+
+    <ul>
+      <%% <%= singular_table_name %>.errors.full_messages.each do |message| %> %>
+      <li><%%= message %></li>
+      <%% end %>
+    </ul>
+  </div>
+<%% end %>
+
+  <% if attributes.map(&:name).include?('title') %>
+    <div class="field">
+      <%%= f.label :title %><br />
+      <%%= f.text_field :title %>
+    </div>
+  <% end %>
+
+  <div class="tabs prevent-flash">
+    <ul class="tab-list">
+      <li><a href="#tabs-1">Content</a></li>
+      <li><a href="#tabs-2">Media</a></li>
+      <li><a href="#tabs-3">Settings</a></li>
+      <li>
+        <%%= link_to '#', class: 'destroy-tabs right', data: { class: 'tabs' } do %>
+          <%%= octicon('chevron-down') %>
+        <%% end %>
+      </li>
+    </ul>
+
+    <%%= field_set_tag nil, id: 'tabs-1' do %>
+      <% attributes.reject{|x| [:image, :document, :boolean ].include?(x.type) }.each do |attribute| -%>
+        <div class="field">
+          <%%= f.label :<%= attribute.column_name %> %><br>
+          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
+        </div>
+      <% end -%>
+    <%% end %>
+
+    <%%= field_set_tag nil, id: 'tabs-2' do %>
+      <% attributes.select{|x| x.type == :image }.each do |attribute| -%>
+        <%%= f.image_field :<%= attribute.column_name %> %>
+      <% end -%>
+
+      <% attributes.select{|x| x.type == :document }.each do |attribute| -%>
+        <%%= f.document_field :<%= attribute.column_name %> %>
+      <% end -%>
+    <%% end %>
+
+    <%%= field_set_tag nil, id: 'tabs-3' do %>
+      <% attributes.select{|x| x.type == :boolean }.each do |attribute| -%>
+        <div class="field">
+          <%%= f.label :<%= attribute.column_name %> %><br>
+          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+        </div>
+      <% end -%>
+    <%% end %>
+  </div>
+
+  <div class="actions">
+    <%%= f.submit %>
+  </div>
+<%% end %>

@@ -1,28 +1,39 @@
 # OptimadminGenerators
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/optimadmin_generators`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A generator to generate admin views
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'optimadmin_generators'
+gem 'optimadmin_generators', git: 'git@github.com:eskimosoup/optimadmin_generators.git'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install optimadmin_generators
-
 ## Usage
 
-TODO: Write usage instructions here
+Example:
+    rails generate optimadmin:admin Thing
+
+    This will create:
+        controllers/optimadmin/things_controller.rb
+        views/optimadmin/things/index.html.erb
+        views/optimadmin/things/new.html.erb
+        views/optimadmin/things/edit.html.erb
+        views/optimadmin/things/_form.html.erb
+
+    rails generate admin Thing title image:image document:document display:boolean
+
+    This will create all the things above but setup image_field for the image, document_field for the document and all booleans will go into
+    the settings section of the form
+
+## Useful links
+  [Rails scaffold controller](https://github.com/rails/rails/blob/master/railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb)
+  [Strip heredoc](http://guides.rubyonrails.org/active_support_core_extensions.html#strip-heredoc)
 
 ## Development
 
