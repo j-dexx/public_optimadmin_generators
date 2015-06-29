@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
     def index
-      @<%= plural_table_name %> = <%= class_name %>.all
+      @<%= plural_table_name %> = <%= class_name %>.page(params[:page]).per(15)
     end
 
     def show
