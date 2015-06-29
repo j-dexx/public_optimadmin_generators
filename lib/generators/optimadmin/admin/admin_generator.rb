@@ -17,6 +17,12 @@ module Optimadmin
       template "edit.html.erb", "app/views/optimadmin/#{plural_file_name}/edit.html.erb"
     end
 
+    def add_to_module_links
+      insert_into_file "app/views/optimadmin/shared/sidebar", after: "<ul class=\"content-category-list\">" do
+        "<%= module_link(model: #{ singular_table_name.titleize }, path: #{ index_helper }_path) %>"
+      end
+    end
+
     def create_route
       insert_into_file "config/routes.rb", after: "Optimadmin::Engine.routes.draw do\n" do
         if yes? "Has image?"

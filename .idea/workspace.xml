@@ -58,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_generator.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="admin_generator.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
-              <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.41930115" vertical-offset="108" max-vertical-offset="1350">
+              <caret line="20" column="104" selection-start-line="20" selection-start-column="104" selection-end-line="20" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -78,21 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/controller.rb">
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="479" max-vertical-offset="1098">
-              <caret line="51" column="6" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/_form.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5609756" vertical-offset="686" max-vertical-offset="1260">
-              <caret line="56" column="12" selection-start-line="53" selection-start-column="6" selection-end-line="56" selection-end-column="12" />
+            <state vertical-scroll-proportion="-2.6666667" vertical-offset="0" max-vertical-offset="630">
+              <caret line="4" column="145" selection-start-line="4" selection-start-column="117" selection-end-line="4" selection-end-column="145" />
               <folding />
             </state>
           </provider>
@@ -115,10 +105,10 @@
       <list>
         <option value="$PROJECT_DIR$/optimadmin_generators.gemspec" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb" />
         <option value="$PROJECT_DIR$/lib/generators/optimadmin/admin/USAGE" />
         <option value="$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/controller.rb" />
         <option value="$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/_form.html.erb" />
+        <option value="$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb" />
       </list>
     </option>
   </component>
@@ -470,10 +460,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb">
+    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
-          <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.7903494" vertical-offset="443" max-vertical-offset="1098">
+          <caret line="51" column="6" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.094076656" vertical-offset="0" max-vertical-offset="574">
+          <caret line="3" column="77" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1260">
+          <caret line="0" column="37" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -486,18 +492,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/controller.rb">
+    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="479" max-vertical-offset="1098">
-          <caret line="51" column="6" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
+        <state vertical-scroll-proportion="-2.6666667" vertical-offset="0" max-vertical-offset="630">
+          <caret line="4" column="145" selection-start-line="4" selection-start-column="117" selection-end-line="4" selection-end-column="145" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/templates/_form.html.erb">
+    <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5609756" vertical-offset="686" max-vertical-offset="1260">
-          <caret line="56" column="12" selection-start-line="53" selection-start-column="6" selection-end-line="56" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.41930115" vertical-offset="108" max-vertical-offset="1350">
+          <caret line="20" column="104" selection-start-line="20" selection-start-column="104" selection-end-line="20" selection-end-column="104" />
           <folding />
         </state>
       </provider>
