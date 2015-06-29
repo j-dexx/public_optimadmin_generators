@@ -62,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.44925123" vertical-offset="108" max-vertical-offset="1350">
-              <caret line="21" column="110" selection-start-line="21" selection-start-column="110" selection-end-line="21" selection-end-column="110" />
+              <caret line="21" column="99" selection-start-line="21" selection-start-column="99" selection-end-line="21" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -503,7 +503,7 @@
     <entry file="file://$PROJECT_DIR$/lib/generators/optimadmin/admin/admin_generator.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44925123" vertical-offset="108" max-vertical-offset="1350">
-          <caret line="21" column="110" selection-start-line="21" selection-start-column="110" selection-end-line="21" selection-end-column="110" />
+          <caret line="21" column="99" selection-start-line="21" selection-start-column="99" selection-end-line="21" selection-end-column="99" />
           <folding />
         </state>
       </provider>
