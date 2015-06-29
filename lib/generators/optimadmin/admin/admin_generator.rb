@@ -18,7 +18,7 @@ module Optimadmin
     end
 
     def add_to_module_links
-      insert_into_file "app/views/optimadmin/shared/sidebar/_module_links", after: "<ul class=\"content-category-list\">" do
+      insert_into_file "app/views/optimadmin/shared/sidebar/_module_links.html.erb", after: "<ul class=\"content-category-list\">" do
         "<%= module_link(model: #{ singular_table_name.titleize }, path: #{ index_helper }_path) %>"
       end
     end
