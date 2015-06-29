@@ -19,7 +19,7 @@ module Optimadmin
     def create
       @<%= singular_table_name %> = <%= class_name %>.new(<%= "#{singular_table_name}_params" %>)
       if @<%= singular_table_name %>.save
-        redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully created.'" %>
+        redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully created.'" %>
       else
         render :new
       end
@@ -27,7 +27,7 @@ module Optimadmin
 
     def update
       if @<%= singular_table_name %>.update(<%= "#{singular_table_name}_params" %>)
-        redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully updated.'" %>
+        redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully updated.'" %>
       else
         render :edit
       end
