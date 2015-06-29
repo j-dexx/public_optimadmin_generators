@@ -12,10 +12,10 @@
 <%% end %>
 
   <% if attributes.map(&:name).include?('title') %>
-    <div class="field">
-      <%%= f.label :title %><br />
-      <%%= f.text_field :title %>
-    </div>
+  <div class="field">
+    <%%= f.label :title %><br />
+    <%%= f.text_field :title %>
+  </div>
   <% end %>
 
   <div class="tabs prevent-flash">
@@ -32,29 +32,29 @@
 
     <%%= field_set_tag nil, id: 'tabs-1' do %>
       <% attributes.reject{|x| [:image, :document, :boolean ].include?(x.type) }.each do |attribute| -%>
-        <div class="field">
-          <%%= f.label :<%= attribute.column_name %> %><br>
-          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
-        </div>
+      <div class="field">
+        <%%= f.label :<%= attribute.column_name %> %><br>
+        <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
+      </div>
       <% end -%>
     <%% end %>
 
     <%%= field_set_tag nil, id: 'tabs-2' do %>
       <% attributes.select{|x| x.type == :image }.each do |attribute| -%>
-        <%%= f.image_field :<%= attribute.column_name %> %>
+      <%%= f.image_field :<%= attribute.column_name %> %>
       <% end -%>
 
       <% attributes.select{|x| x.type == :document }.each do |attribute| -%>
-        <%%= f.document_field :<%= attribute.column_name %> %>
+      <%%= f.document_field :<%= attribute.column_name %> %>
       <% end -%>
     <%% end %>
 
     <%%= field_set_tag nil, id: 'tabs-3' do %>
       <% attributes.select{|x| x.type == :boolean }.each do |attribute| -%>
-        <div class="field">
-          <%%= f.label :<%= attribute.column_name %> %><br>
-          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
-        </div>
+      <div class="field">
+        <%%= f.label :<%= attribute.column_name %> %><br>
+        <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+      </div>
       <% end -%>
     <%% end %>
   </div>
