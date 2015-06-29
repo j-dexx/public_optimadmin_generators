@@ -11,7 +11,7 @@ Example:
         views/optimadmin/things/edit.html.erb
         views/optimadmin/things/_form.html.erb
 
-    rails generate admin Thing title image:image document:document display:boolean
+    rails generate optimadmin:admin Thing title image:image document:document display:boolean
 
     This will create all the things above but setup image_field for the image, document_field for the document and all booleans will go into
     the settings section of the form
