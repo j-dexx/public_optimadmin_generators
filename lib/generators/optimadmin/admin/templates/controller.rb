@@ -42,7 +42,7 @@ module Optimadmin
 
 
     def set_<%= singular_table_name %>
-      @<%= singular_table_name %> = @<%= singular_table_name %>.find(params[:id])
+      @<%= singular_table_name %> = <%= class_name %>.find(params[:id])
     end
 
     def <%= "#{singular_table_name}_params" %>
