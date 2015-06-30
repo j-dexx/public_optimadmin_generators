@@ -42,7 +42,6 @@ module Optimadmin
             post 'order'
           end
           member do
-            get 'edit_images'
             get 'toggle'
             get 'edit_images'
             post 'update_image_default'
