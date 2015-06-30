@@ -1,0 +1,13 @@
+Description:
+    A generator to install optimadmin
+
+Example:
+    rails generate optimadmin:install
+
+    This will create:
+        presenters/optimadmin/base_presenter.rb
+        presenters/base_presenter.rb
+        presenters/menu_item_presenter.rb
+        views/optimadmin/shared/sidebar/_module_links.html.erb
+
+    It will also mount the engine and add in the Engine routing
