@@ -2,7 +2,7 @@
 
 <div class="main-content">
   <div class="row module-header collapse">
-    <%%= render 'optimadmin/shared/module/index/new_item', title: '<%= singular_table_name.titleize %>', object: <%= singular_table_name.titleize %>, path: new_<%= singular_table_name %>_path %>
+    <%%= render 'optimadmin/shared/module/index/new_item', title: '<%= singular_table_name.titleize %>', object: <%= class_name %>, path: new_<%= singular_table_name %>_path %>
     <%%= render 'optimadmin/shared/search_form' %>
     <%%= render 'optimadmin/shared/module/index/pagination' %>
     <%%= render 'optimadmin/shared/module/index/order', options: [['Username', 'username']] %>
