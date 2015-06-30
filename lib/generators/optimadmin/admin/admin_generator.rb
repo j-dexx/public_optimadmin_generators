@@ -15,6 +15,11 @@ module Optimadmin
       template "index.html.erb", "app/views/optimadmin/#{plural_file_name}/index.html.erb"
       template "new.html.erb", "app/views/optimadmin/#{plural_file_name}/new.html.erb"
       template "edit.html.erb", "app/views/optimadmin/#{plural_file_name}/edit.html.erb"
+      template "_partial.html.erb", "app/views/optimadmin/#{plural_file_name}/_#{singular_table_name}.html.erb"
+    end
+
+    def generate_presenter
+      template "presenter.rb", "app/presenters/optimadmin/#{singular_table_name}_presenter.rb"
     end
 
     def add_to_module_links
@@ -25,7 +30,7 @@ module Optimadmin
 
     def create_route
       insert_into_file "config/routes.rb", after: "Optimadmin::Engine.routes.draw do\n" do
-        if yes? "Has image?"
+        unless attributes.select{|x| x.type == :image }.size.zero?
           image_route
         else
           non_image_route

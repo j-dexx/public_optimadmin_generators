@@ -25,6 +25,6 @@
     <%%= list_item 'large-1 hide-for-medium-down text-center last' do 'Delete' end %>
   </div>
 
-  <%%= render_object @<%= plural_table_name %> %>
+  <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
   <%%= paginate @<%= plural_table_name %> %>
 </div>
