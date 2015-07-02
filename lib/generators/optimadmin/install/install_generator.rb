@@ -20,5 +20,13 @@ module Optimadmin
     def add_presenters
       directory "presenters", "app/presenters"
     end
+
+    def copy_google_analytics_profile
+      copy_file "initializers/ga_profile.rb", "config/initializers/ga_profile.rb"
+    end
+
+    def navigation_constants
+      copy_file "initializers/navigation_constants.rb", "config/initializers/navigation_constants.rb"
+    end
   end
 end
