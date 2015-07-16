@@ -1,6 +1,8 @@
 module Optimadmin
   class BasePresenter
 
+    attr_reader :object
+
     def initialize(object:, view_template:)
       @object = object
       @view_template = view_template
@@ -12,21 +14,33 @@ module Optimadmin
       end
     end
 
+    def id
+      object.id
+    end
+
+    def edit_image(image)
+      h.it_edit_images(image).call(object)
+    end
+
+    def view_link
+      h.link_to eye, h.polymorphic_url(object), class: 'menu-item-control'
+    end
+
     def edit_link
-      h.link_to pencil, h.polymorphic_url([:edit, @object]), options: { class: 'menu-item-control' }
+      h.link_to pencil, h.polymorphic_url([:edit, object]), class: 'menu-item-control'
     end
 
     def delete_link
-      h.link_to trash_can, h.polymorphic_url(@object), method: :delete, data: { confirm: 'Are you sure?' }, class: 'menu-item-control'
+      h.link_to trash_can, h.polymorphic_url(object), method: :delete, data: { confirm: 'Are you sure?' }, class: 'menu-item-control'
     end
 
     def detail_toggle_link
-      link_to(chevron_down, "#index-list-#{@object.id}", class: 'toggle-module-list-index helper-link', data: { container: "index-list-#{@object.id}", class: 'hide', return: 'true', this_class: 'octicon-chevron-up octicon-chevron-down' }) if can?(:read, @object)
+      h.link_to(chevron_down, "#index-list-#{object.id}", class: 'toggle-module-list-index helper-link', data: { container: "index-list-#{object.id}", class: 'hide', return: 'true', this_class: 'octicon-chevron-up octicon-chevron-down' }) # if can?(:read, @object)
     end
 
-    def toggle_link
-      return nil unless @object.respond_to?(:display)
-      link_to((@object.display? ? 'Yes' : 'No'), h.toggle_path(model: @object.class.name.demodulize, id: @object.id, toggle: toggle), id: "display-#{@object.id}", class: "helper-link display #{ @object.display? ? 'true' : 'false' }", remote: true) if can?(:update, @object)
+    def toggle_link(attribute = :display)
+      return nil unless object.respond_to?(attribute)
+      h.link_to((object.send("#{attribute}?") ? 'Yes' : 'No'), h.toggle_path(model: object.class.name.demodulize, id: object.id, toggle: attribute), id: "display-#{object.id}", class: "helper-link display #{ object.send("#{attribute}?") ? 'true' : 'false' }", remote: true)
     end
 
     def show_link
