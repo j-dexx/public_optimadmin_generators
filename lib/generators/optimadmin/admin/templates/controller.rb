@@ -3,7 +3,7 @@ module Optimadmin
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
     def index
-      @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(collection: <%= class_name %>.where('title LIKE ?', "#{params[:search]}").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::<%= class_name %>Presenter)
+      @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(collection: <%= class_name %>.where('title LIKE ?', "#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::<%= class_name %>Presenter)
     end
 
     def show
