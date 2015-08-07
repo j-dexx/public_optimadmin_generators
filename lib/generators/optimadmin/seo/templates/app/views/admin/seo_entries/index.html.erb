@@ -1,0 +1,19 @@
+<% title 'SEO Entries' %>
+
+<%= render 'admin/shared/search' %>
+<div class="admin_functions">
+  <%= link_to "Rebuild SEO", rebuild_seo_admin_seo_entries_path %>
+</div>
+
+<%= informant_table @seo_entries, {
+      :headings => [ :nominal_url, :title, :meta_description, :in_sitemap, '' ],
+      :body => [
+        lambda{|x| link_to(x.nominal_url, x.nominal_url, :target => '_blank')},
+        :title,
+        it_shorten(:meta_description),
+        it_ajax_toggle(:in_sitemap),
+        it_edit
+      ]
+    } %>
+
+<%= paginate @seo_entries %>
