@@ -21,6 +21,10 @@ module Optimadmin
       directory "presenters", "app/presenters"
     end
 
+    def add_model_concerns
+      directory "models/concerns", "app/models/concerns"
+    end
+
     def copy_google_analytics_profile
       copy_file "initializers/ga_profile.rb", "config/initializers/ga_profile.rb"
     end
