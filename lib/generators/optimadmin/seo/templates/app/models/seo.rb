@@ -25,7 +25,7 @@ class SEO
     # that you would like to appear in the admin sitemap. Eg.
     #
     # when 'articles'
-    #   Article.where(:display => true).order(:title)
+    #   Article.where(display: true).order(:title)
 
     else
       []
@@ -38,10 +38,10 @@ class SEO
     # The method for retrieving the routes and their details keeps changing
     # between rails versions so this is likely to keep needing updating.
     routes = Rails.application.routes.routes.select{|x| [//, /^GET$/].include?(x.verb)}.map do |route|
-      { :alias => route.name,
-        :path => route.path.spec.to_s.gsub("(.:format)", ""),
-        :controller => route.defaults[:controller],
-        :action => route.defaults[:action] }
+      { alias: route.name,
+        path: route.path.spec.to_s.gsub("(.:format)", ""),
+        controller: route.defaults[:controller],
+        action: route.defaults[:action] }
     end
 
     # Reject routes without a controller such as 301s
@@ -79,7 +79,7 @@ class SEO
           end
 
           if uses_friendly_id
-            seo_entry = SeoEntry.find_or_create_by_nominal_url(route[:path].gsub(':id', object.friendly_id))
+            seo_entry = SeoEntry.find_or_create_by(nominal_url: route[:path].gsub(':id', object.friendly_id))
             nominal_urls_added << route[:path].gsub(':id', object.friendly_id)
 
             if seo_entry.title.blank?
@@ -90,7 +90,7 @@ class SEO
               end
             end
           else
-            seo_entry = SeoEntry.find_or_create_by_nominal_url(route[:path].gsub(':id', object.id.to_s))
+            seo_entry = SeoEntry.find_or_create_by(nominal_url: route[:path].gsub(':id', object.id.to_s))
             nominal_urls_added << route[:path].gsub(':id', object.id.to_s)
 
             if seo_entry.title.blank?
@@ -105,9 +105,9 @@ class SEO
           seo_entry.save
         end
       else
-        seo_entry = SeoEntry.find_or_create_by_nominal_url(route[:path])
+        seo_entry = SeoEntry.find_or_create_by(nominal_url: route[:path])
         nominal_urls_added << route[:path]
-        seo_entry.title = route[:alias].gsub('_', ' ').capitalize if seo_entry.title.blank?
+        seo_entry.title = route[:alias].gsub('_', ' ').capitalize if seo_entry.title.blank? && route[:alias].present?
         seo_entry.save
       end
     end

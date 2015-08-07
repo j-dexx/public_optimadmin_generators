@@ -1,0 +1,7 @@
+<%= render 'optimadmin/shared/header/main_title', title: 'Edit SEO entry' %>
+
+<div class="main-content">
+  <%= render 'optimadmin/shared/module/form/back', path: seo_entries_path, title: 'SEO Entry' %>
+
+  <%= render 'form', seo_entry: @seo_entry %>
+</div>

@@ -1,0 +1,19 @@
+<div class="row collapse module-list-index <%= cycle('odd', 'even') %>" data-equalizer="module-list" id="item_<%= seo_entry_presenter.id %>">
+  <div class="large-6 small-12 columns" data-equalizer-watch="module-list">
+    <%= seo_entry_presenter.nominal_url %>
+  </div>
+
+  <div class="large-5 small-12 columns" data-equalizer-watch="module-list">
+    <%= seo_entry_presenter.title %>
+  </div>
+
+  <div class="large-1 small-12 columns" data-equalizer-watch="module-list">
+    <%= seo_entry_presenter.edit_link %>
+  </div>
+
+  <div class="row module-list-detail hide" id="index-list-<%= seo_entry_presenter.id %>">
+    <div class="small-12 columns module-list-summary last">
+
+    </div>
+  </div>
+</div>

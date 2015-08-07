@@ -12,22 +12,12 @@ module Optimadmin
     end
 
     def add_route
-      inject_into_file
-        'config/routes.rb',
-        "\n\nget 'sitemap' to: 'application#sitemap'\n\n",
-        after: 'Application.routes.draw do'
-
-      insert_into_file
-        "config/routes.rb",
-        admin_routes,
-        after: "Optimadmin::Engine.routes.draw do\n"
+      inject_into_file 'config/routes.rb', "\n\n  get 'sitemap', to: 'application#sitemap'\n\n", after: 'Rails.application.routes.draw do'
+      insert_into_file "config/routes.rb", admin_routes, after: "Optimadmin::Engine.routes.draw do\n"
     end
 
     def add_to_application_controller
-      inject_into_file
-        'app/controllers/application_controller.rb',
-        application_controller,
-        after: 'class ApplicationController < ActionController::Base'
+      inject_into_file 'app/controllers/application_controller.rb', application_controller, after: 'class ApplicationController < ActionController::Base'
     end
 
     def add_to_navigation
@@ -40,6 +30,7 @@ module Optimadmin
 
       def admin_routes
         <<-ROUTE.strip_heredoc.indent(2)
+          \n
           resources :seo_entries, except: [:show] do
             collection do
               post 'order'
@@ -54,6 +45,7 @@ module Optimadmin
 
       def application_controller
         <<-CONTROLLER.strip_heredoc.indent(2)
+          \n
           before_action :set_seo_variables
 
           def sitemap

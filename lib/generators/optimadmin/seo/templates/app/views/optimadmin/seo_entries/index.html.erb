@@ -1,0 +1,19 @@
+<%= render 'optimadmin/shared/header/main_title', title: 'Manage SEO Entries' %>
+
+<div class="main-content">
+  <div class="row module-header collapse">
+    <%= link_to 'Rebuild SEO entries', rebuild_seo_seo_entries_path, class: 'action-button' %>
+    <%= render 'optimadmin/shared/search_form' %>
+    <%= render 'optimadmin/shared/module/index/pagination' %>
+  </div>
+
+  <div class="row collapse module-list-index header">
+    <%= list_item 'large-6 small-4' do 'Nominal URL' end %>
+    <%= list_item 'large-5 small-4' do 'Title' end %>
+
+    <%= list_item { 'Edit' } %>
+  </div>
+
+  <%= render partial: 'seo_entry', collection: @seo_entries, as: :seo_entry_presenter %>
+  <%= paginate @seo_entries %>
+</div>
