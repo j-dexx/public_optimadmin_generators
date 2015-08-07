@@ -1,0 +1,7 @@
+<h1>Sitemap</h1>
+
+<% @seo_entries.each do |seo_entry| %>
+  <p>
+    <%= link_to seo_entry.title, seo_entry.nominal_url %>
+  </p>
+<% end %>
