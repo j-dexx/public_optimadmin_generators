@@ -34,7 +34,8 @@ Example:
 ### Other generators
 
   * optimadmin:seo
-  
+  * optimadmin:page
+
 
 ## Useful links
   [Rails scaffold controller](https://github.com/rails/rails/blob/master/railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb)
