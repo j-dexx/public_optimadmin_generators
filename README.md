@@ -31,9 +31,15 @@ Example:
     This will create all the things above but setup image_field for the image, document_field for the document and all booleans will go into
     the settings section of the form
 
+### Other generators
+
+  * optimadmin:seo
+  
+
 ## Useful links
   [Rails scaffold controller](https://github.com/rails/rails/blob/master/railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb)
   [Strip heredoc](http://guides.rubyonrails.org/active_support_core_extensions.html#strip-heredoc)
+  https://ludostudio.teamwork.com/notebooks/82708
 
 ## Development
 
