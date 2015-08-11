@@ -11,10 +11,10 @@
   <% @seo_entries.each do |seo_entry| %>
     <url>
       <loc>
-        <%= "http://#{Rails.application.routes.default_url_options[:host]}#{seo_entry.nominal_url}" %>
+        <%= "#{request.protocol}#{Rails.application.routes.default_url_options[:host]}#{seo_entry.nominal_url}" %>
       </loc>
       <lastmod>
-        <%= l seo_entry.updated_at, :format => :seo %>
+        <%= l seo_entry.updated_at, format: :seo %>
       </lastmod>
       <changefreq>
         always
