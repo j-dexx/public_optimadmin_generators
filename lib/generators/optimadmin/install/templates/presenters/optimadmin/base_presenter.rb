@@ -23,7 +23,7 @@ module Optimadmin
     end
 
     def view_link
-      h.link_to eye, h.polymorphic_url(object), class: 'menu-item-control'
+      h.link_to eye, h.main_app.polymorphic_url(object), class: 'menu-item-control'
     end
 
     def edit_link
