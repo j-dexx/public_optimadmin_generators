@@ -10,6 +10,10 @@ module Optimadmin
       page.title
     end
 
+    def toggle_title
+      detail_toggle_link(title)
+    end
+
     def content
       h.raw page.content
     end

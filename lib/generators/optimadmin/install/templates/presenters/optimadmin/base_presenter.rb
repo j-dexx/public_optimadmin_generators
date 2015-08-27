@@ -35,7 +35,10 @@ module Optimadmin
     end
 
     def detail_toggle_link
-      h.link_to(chevron_down, "#index-list-#{object.id}", class: 'toggle-module-list-index helper-link', data: { container: "index-list-#{object.id}", class: 'hide', return: 'true', this_class: 'octicon-chevron-up octicon-chevron-down' }) # if can?(:read, @object)
+      h.link_to "#index-list-#{object.id}", class: 'toggle-module-list-index helper-link', data: { container: "index-list-#{object.id}", class: 'hide', return: 'true', this_class: 'octicon-chevron-up octicon-chevron-down' } do
+        chevron_down + content
+      end
+      # if can?(:read, @object)
     end
 
     def toggle_link(attribute = :display)
