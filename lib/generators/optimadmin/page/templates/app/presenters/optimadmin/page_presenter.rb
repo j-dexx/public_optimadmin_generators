@@ -11,7 +11,7 @@ module Optimadmin
     end
 
     def toggle_title
-      detail_toggle_link(title)
+      inline_detail_toggle_link(title)
     end
 
     def content
