@@ -23,18 +23,10 @@
         Manage Your Content
       </div>
 
-      <ul class="content-category-list">
+      <ul id="modules" class="content-category-list">
         <% if can? :manage, Optimadmin::MenuItem %>
           <li><%= link_to 'Site Navigation', menu_items_path %></li>
         <% end %>
-      </ul>
-
-      <div class="content-category-type">
-        Website Visuals
-      </div>
-
-      <ul class="content-category-list">
-
       </ul>
     </div>
   </div>
