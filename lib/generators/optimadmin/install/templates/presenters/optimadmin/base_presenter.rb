@@ -34,7 +34,7 @@ module Optimadmin
       h.link_to trash_can, h.polymorphic_url(object), method: :delete, data: { confirm: 'Are you sure?' }, class: 'menu-item-control'
     end
 
-    def detail_toggle_link
+    def detail_toggle_link(content)
       h.link_to "#index-list-#{object.id}", class: 'toggle-module-list-index helper-link', data: { container: "index-list-#{object.id}", class: 'hide', return: 'true', this_class: 'octicon-chevron-up octicon-chevron-down' } do
         chevron_down + content
       end
