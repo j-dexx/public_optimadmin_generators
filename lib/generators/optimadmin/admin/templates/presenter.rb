@@ -10,6 +10,10 @@ module Optimadmin
       #<%= singular_table_name %>.title
     end
 
+    def toggle_title
+      detail_toggle_link(title)
+    end
+
     def optimadmin_summary
       #h.raw <%= singular_table_name %>.summary
     end

@@ -13,17 +13,17 @@
 
   <div class="row collapse module-list-index header">
     <% unless attributes.select{|x| x.name == 'position' }.size.zero? %>
-      <%%= list_item 'large-1 small-2' do %>
+      <%%= list_item 'large-1 hide-for-medium-down' do %>
         <%%= link_to octicon('settings') %>
       <%% end %>
     <% end %>
 
     <% if attributes.select{|x| x.type == :image }.size.zero? %>
-      <%% # ADD TWO TO THE TITLE COLUMN SIZE BELOW TO ACCOUNT FOR NO IMAGE %>
+      <%% # ADD TWO TO THE TITLE LARGE COLUMN SIZE BELOW TO ACCOUNT FOR NO IMAGE %>
     <% end %>
 
     <% if attributes.select{|x| x.name == 'position' }.size > 0 %>
-      <%%= list_item 'large-5 small-4' do %>
+      <%%= list_item 'large-5 small-8' do %>
         <%%= link_to octicon('chevron-down'), '#', class: 'helper-link index-list-expand-all', data: { this_class: 'octicon-chevron-up octicon-chevron-down' } %>
         Title
       <%% end %>
