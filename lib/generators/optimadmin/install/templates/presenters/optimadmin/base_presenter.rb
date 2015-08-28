@@ -2,6 +2,7 @@ module Optimadmin
   class BasePresenter
 
     attr_reader :object
+    delegate :to_param, :to_partial_path, to: :object
 
     def initialize(object:, view_template:)
       @object = object
