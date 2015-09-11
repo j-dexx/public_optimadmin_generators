@@ -1,0 +1,5 @@
+Description:
+    A generator to generate error pages
+
+Example:
+    rails generate optimadmin:error_messages
