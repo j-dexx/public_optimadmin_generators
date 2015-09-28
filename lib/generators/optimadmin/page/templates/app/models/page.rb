@@ -7,6 +7,8 @@ class Page < ActiveRecord::Base
   before_save :store_image, if: Proc.new{|page| page.remote_image_url.blank? }
   # before_save :store_file, if: Proc.new{|page| page.remote_file_url.blank? }
 
+  scope :displayed, -> { where(display: true) }
+
   validates :title, :content, presence: true
   validates :suggested_url, allow_blank: true, uniqueness: { message: 'is not unique, leave this blank to generate automatically' }
 
