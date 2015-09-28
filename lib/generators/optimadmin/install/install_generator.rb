@@ -5,6 +5,10 @@ module Optimadmin
 
     source_root File.expand_path('../templates', __FILE__)
 
+    def create_tests
+      directory 'spec'
+    end
+
     def mount_engine
       route 'mount Optimadmin::Engine => "/admin"'
     end

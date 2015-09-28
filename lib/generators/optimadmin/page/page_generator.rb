@@ -13,6 +13,10 @@ module Optimadmin
       directory 'app'
     end
 
+    def create_tests
+      directory 'spec'
+    end
+
     # Begin app methods
 
     def add_app_route

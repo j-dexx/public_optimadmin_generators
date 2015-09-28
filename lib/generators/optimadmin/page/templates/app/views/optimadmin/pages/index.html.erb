@@ -21,8 +21,6 @@
     <%= list_item 'large-1 hide-for-medium-down text-center last' do 'Delete' end %>
   </div>
 
-  <% @pages.each do |page_presenter| %>
-    <%= render partial: 'page', locals: { page_presenter: page_presenter } %>
-  <% end %>
+  <%= render partial: 'page', collection: @pages, as: :page_presenter %>
   <%= paginate @pages %>
 </div>

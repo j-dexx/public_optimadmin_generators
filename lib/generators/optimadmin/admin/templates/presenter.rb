@@ -1,10 +1,7 @@
 module Optimadmin
   class <%= class_name %>Presenter < Optimadmin::BasePresenter
     presents :<%= singular_table_name %>
-
-    def id
-      <%= singular_table_name %>.id
-    end
+    delegate :id, to: :<%= singular_table_name %>
 
     def title
       #<%= singular_table_name %>.title
