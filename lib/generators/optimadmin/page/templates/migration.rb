@@ -10,7 +10,7 @@ class CreatePages < ActiveRecord::Migration
       t.boolean :display, default: true
       t.text :content, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

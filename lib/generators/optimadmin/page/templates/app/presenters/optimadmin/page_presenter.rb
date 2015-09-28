@@ -1,14 +1,7 @@
 module Optimadmin
   class PagePresenter < Optimadmin::BasePresenter
     presents :page
-
-    def id
-      page.id
-    end
-
-    def title
-      page.title
-    end
+    delegate :id, :title, to: :page
 
     def toggle_title
       inline_detail_toggle_link(title)
