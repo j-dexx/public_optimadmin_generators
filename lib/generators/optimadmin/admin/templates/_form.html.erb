@@ -37,6 +37,10 @@
         <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
       </div>
       <% end -%>
+
+      <% attributes.select{|x| x.type == :date }.each do |attribute| -%>
+        <%%= f.datepicker_field :<%= attribute.column_name %> %>
+      <% end -%>
     <%% end %>
 
     <%%= field_set_tag nil, id: 'tabs-2' do %>

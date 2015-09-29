@@ -10,7 +10,7 @@ class Page < ActiveRecord::Base
   scope :displayed, -> { where(display: true) }
 
   validates :title, :content, presence: true
-  validates :suggested_url, allow_blank: true, uniqueness: { message: 'is already taken, leave blank to generate automatically' }
+  validates :suggested_url, allow_blank: true, uniqueness: { case_sensitive: false, message: 'is already taken, leave blank to generate automatically' }
 
   def slug_candidates
     [
