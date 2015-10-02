@@ -42,7 +42,7 @@
   <% end %>
 
   <%= field_set_tag nil, id: 'tabs-3' do %>
-    <div class="field<%= ' hide' if Page.styles.size < 2 %>">
+    <div class="field<%= ' hide' if Page.layouts.size < 2 %>">
       <%= f.label :layout %><br />
       <%= f.select :layout, Page.layouts.map{ |x| [t(x), x] } %>
     </div>
