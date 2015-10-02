@@ -24,7 +24,11 @@ module Optimadmin
     end
 
     def view_link
-      h.link_to eye, h.main_app.polymorphic_url(object), class: 'menu-item-control'
+      begin
+        h.link_to eye, h.main_app.polymorphic_url(object), class: 'menu-item-control'
+      rescue
+        ''
+      end
     end
 
     def edit_link
@@ -48,7 +52,7 @@ module Optimadmin
 
     def toggle_link(attribute = :display)
       return nil unless object.respond_to?(attribute)
-      h.link_to((object.send("#{attribute}?") ? 'Yes' : 'No'), h.toggle_path(model: object.class.name.demodulize, id: object.id, toggle: attribute), id: "display-#{object.id}", class: "helper-link display #{ object.send("#{attribute}?") ? 'true' : 'false' }", remote: true)
+      h.link_to((object.send("#{attribute}?") ? 'Yes' : 'No'), h.toggle_path(model: object.class.name.demodulize, id: object.id, toggle: attribute), id: "#{attribute}-#{object.id}", class: "helper-link display #{ object.send("#{attribute}?") ? 'true' : 'false' }", remote: true)
     end
 
     def show_link
