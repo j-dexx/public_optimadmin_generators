@@ -12,7 +12,7 @@ module Optimadmin
     end
 
     def optimadmin_summary
-      #h.raw <%= singular_table_name %>.summary
+      #h.simple_format <%= singular_table_name %>.summary
     end
   end
 end
