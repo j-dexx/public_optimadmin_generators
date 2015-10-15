@@ -12,6 +12,7 @@ require 'shoulda-matchers'
 require 'database_cleaner'
 require 'support/mailer_macros'
 require 'support/site_settings_macros'
+require 'support/optimadmin_macros'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -32,7 +33,8 @@ require 'support/site_settings_macros'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
-Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :selenium
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
@@ -83,6 +85,7 @@ RSpec.configure do |config|
   config.include SiteSettingsMacros, type: :feature
   config.before(:each, type: :feature) { reset_email }
   config.before(:each, type: :feature) do
+    create(:administrator)
     create(:site_setting_name)
     create(:site_setting_email)
   end
@@ -91,7 +94,8 @@ RSpec.configure do |config|
     create(:site_setting_email)
   end
   config.before(:each, js: true) do
-    page.driver.browser.url_blacklist = ["https://maps.googleapis.com", "connect.facebook.net"]
+    # this is for poltergeist
+    # page.driver.browser.url_blacklist = ["https://maps.googleapis.com", "connect.facebook.net"]
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
