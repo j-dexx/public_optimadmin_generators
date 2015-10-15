@@ -78,19 +78,23 @@ module Optimadmin
     end
 
     def pencil
-      h.octicon('pencil').html_safe
+      octicon('pencil').html_safe
     end
 
     def trash_can
-      h.octicon('trashcan').html_safe
+      octicon('trashcan').html_safe
     end
 
     def eye
-      h.octicon('eye').html_safe
+      octicon('eye').html_safe
     end
 
     def chevron_down
-      h.octicon('chevron-down').html_safe
+      octicon('chevron-down').html_safe
+    end
+
+    def octicon(code)
+      h.content_tag :span, '', class: "octicon octicon-#{code.to_s.dasherize}"
     end
   end
 end
