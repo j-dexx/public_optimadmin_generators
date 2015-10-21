@@ -36,15 +36,18 @@ module Optimadmin
           %w( 403 404 422 500 ).each do |code|
             get code, to: 'errors#show', code: code
           end
+
+          # This has to be the last route in your list
+          match "*path", to: "errors#show", via: :all, code: 404 unless Rails.application.config.consider_all_requests_local
         ROUTE
       end
 
       def application_controller
         <<-CONTROLLER.strip_heredoc.indent(2)
           \n
-          rescue_from ActiveRecord::RecordNotFound do |exception|
-            render_error 404
-          end
+          rescue_from Exception, with: -> { render_error(404) }
+          rescue_from ActiveRecord::RecordNotFound, with: -> { render_error(404) }
+          rescue_from ActionController::RoutingError, with: -> { render_error(404) }
 
           def render_error(status)
             respond_to do |format|
