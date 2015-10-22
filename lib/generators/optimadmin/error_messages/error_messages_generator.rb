@@ -45,10 +45,12 @@ module Optimadmin
       def application_controller
         <<-CONTROLLER.strip_heredoc.indent(2)
           \n
-          rescue_from Exception, with: -> { render_error(404) }
-          rescue_from ActiveRecord::RecordNotFound, with: -> { render_error(404) }
-          rescue_from ActionController::RoutingError, with: -> { render_error(404) }
-
+          unless Rails.application.config.consider_all_requests_local
+            rescue_from Exception, with: -> { render_error(404) }
+            rescue_from ActiveRecord::RecordNotFound, with: -> { render_error(404) }
+            rescue_from ActionController::RoutingError, with: -> { render_error(404) }
+          end
+          
           def render_error(status)
             respond_to do |format|
               format.html { render 'errors/404', status: status }
