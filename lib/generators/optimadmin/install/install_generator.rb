@@ -29,12 +29,24 @@ module Optimadmin
       directory "models/concerns", "app/models/concerns"
     end
 
+    def add_menu_items
+      directory "menu_items", "app/views/menu_items"
+    end
+
     def copy_google_analytics_profile
       copy_file "initializers/ga_profile.rb", "config/initializers/ga_profile.rb"
     end
 
+    def copy_presentable_intializer
+      copy_file "initializers/extensions.rb", "config/initializers/extensions.rb"
+    end
+
     def navigation_constants
       copy_file "initializers/navigation_constants.rb", "config/initializers/navigation_constants.rb"
+    end
+
+    def copy_presenter_helper
+      copy_file "helpers/presenter_helper.rb", "app/helpers/presenter_helper.rb"
     end
   end
 end
