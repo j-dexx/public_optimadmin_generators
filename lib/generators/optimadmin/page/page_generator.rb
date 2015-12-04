@@ -24,7 +24,7 @@ module Optimadmin
     end
 
     def add_to_navigation_constants
-      inject_into_file 'config/initializers/navigation_constants.rb', "'Dynamic Page' => 'Page',\n", after: "'Module Page' => 'Optimadmin::ModulePage',"
+      inject_into_file 'config/initializers/navigation_constants.rb', "\n  'Dynamic Page' => 'Page',", after: "'Module Page' => 'Optimadmin::ModulePage',"
     end
 
     # Begin admin methods

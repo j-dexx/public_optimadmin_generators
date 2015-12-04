@@ -46,14 +46,14 @@ module Optimadmin
         <<-CONTROLLER.strip_heredoc.indent(2)
           \n
           unless Rails.application.config.consider_all_requests_local
-            rescue_from Exception, with: -> { render_error(404) }
+            rescue_from Exception, with: -> { render_error(500) }
             rescue_from ActiveRecord::RecordNotFound, with: -> { render_error(404) }
             rescue_from ActionController::RoutingError, with: -> { render_error(404) }
           end
-          
+
           def render_error(status)
             respond_to do |format|
-              format.html { render 'errors/404', status: status }
+              format.html { render "errors/#{status}", status: status }
               format.all { render nothing: true, status: status }
             end
           end
