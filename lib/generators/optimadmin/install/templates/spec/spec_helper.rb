@@ -1,3 +1,11 @@
+# https://shvets.github.io/blog/2013/10/19/configure_simplecov.html
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter '/config/'
+  add_filter '/lib/'
+  add_filter '/vendor/'
+  add_group 'Presenters', 'app/presenters'
+end
 require 'rubygems'
 require 'factory_girl'
 
