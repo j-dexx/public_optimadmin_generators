@@ -48,5 +48,9 @@ module Optimadmin
     def copy_presenter_helper
       copy_file "helpers/presenter_helper.rb", "app/helpers/presenter_helper.rb"
     end
+
+    def copy_application_helper
+      copy_file "helpers/application_helper.rb", "app/helpers/application_helper.rb"
+    end
   end
 end
