@@ -53,7 +53,7 @@ module Optimadmin
 
           def render_error(status)
             respond_to do |format|
-              format.html { render "errors/404", status: status }
+              format.html { render "errors/#{status}", status: status }
               format.all { render nothing: true, status: status }
             end
           end
