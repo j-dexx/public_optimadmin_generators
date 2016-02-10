@@ -7,7 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
-# require 'capybara/poltergeist'
+require 'capybara/poltergeist'
 require 'shoulda-matchers'
 require 'database_cleaner'
 
@@ -23,6 +23,7 @@ require 'database_cleaner'
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
+#
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
@@ -33,8 +34,6 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.javascript_driver = :selenium
 
 RSpec.configure do |config|
-  config.include Rails.application.routes.url_helpers
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -78,6 +77,7 @@ RSpec.configure do |config|
   config.include ActionView::TestCase::Behavior, type: :presenter
   config.include Capybara::DSL, type: :feature
   config.include MailerMacros
+  config.include ControllerHelpers, type: :controller
   config.include SiteSettingsMacros, type: :feature
   config.before(:each, type: :feature) { reset_email }
   config.before(:each, type: :feature) do
