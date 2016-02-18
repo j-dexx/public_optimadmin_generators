@@ -26,9 +26,13 @@ module Optimadmin
       template "controller_spec.rb", "spec/controllers/optimadmin/#{singular_table_name}_controller_spec.rb"
     end
 
+    def generate_presenter_spec
+      template "presenter_spec.rb", "spec/presenters/#{singular_table_name}_presenter_spec.rb"
+    end
+
     def add_to_module_links
       insert_into_file "app/views/optimadmin/shared/sidebar/_module_links.html.erb", after: "<ul id=\"modules\" class=\"content-category-list\">\n" do
-        "<%= module_link(content: \"#{ singular_table_name.titleize }\", model: #{ class_name }, path: #{ index_helper }_path) %>\n"
+        "<%= module_link(content: \"#{ singular_table_name.titleize.pluralize }\", model: #{ class_name }, path: #{ index_helper }_path) %>\n"
       end
     end
 
