@@ -69,23 +69,22 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller do
       end
     end
   end
-  
+
   def stub_valid_<%= singular_table_name %>
     <%= singular_table_name %> = build_stubbed(:<%= singular_table_name %>)
-    allow(AdditionalContent).to receive(:new).and_return(<%= singular_table_name %>)
+    allow(<%= class_name %>).to receive(:new).and_return(<%= singular_table_name %>)
     allow(<%= singular_table_name %>).to receive(:save).and_return(true)
-    allow(AdditionalContent).to receive(:find).and_return(<%= singular_table_name %>)
+    allow(<%= class_name %>).to receive(:find).and_return(<%= singular_table_name %>)
     allow(<%= singular_table_name %>).to receive(:update).and_return(true)
     <%= singular_table_name %>
   end
 
   def stub_invalid_<%= singular_table_name %>
     <%= singular_table_name %> = build_stubbed(:<%= singular_table_name %>)
-    allow(AdditionalContent).to receive(:new).and_return(<%= singular_table_name %>)
+    allow(<%= class_name %>).to receive(:new).and_return(<%= singular_table_name %>)
     allow(<%= singular_table_name %>).to receive(:save).and_return(false)
-    allow(AdditionalContent).to receive(:find).and_return(<%= singular_table_name %>)
+    allow(<%= class_name %>).to receive(:find).and_return(<%= singular_table_name %>)
     allow(<%= singular_table_name %>).to receive(:update).and_return(false)
     <%= singular_table_name %>
   end
 end
-
