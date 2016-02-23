@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller do
+describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller, <%= singular_table_name %>: true do
   routes { Optimadmin::Engine.routes }
   before(:each) do
     sign_in
@@ -13,7 +13,7 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller do
 
         post :create, commit: "Save", <%= singular_table_name %>: <%= singular_table_name %>.attributes
 
-        expect(response).to redirect_to(<%= singular_table_name %>s_path)
+        expect(response).to redirect_to(<%= index_helper %>_path)
         expect(flash[:notice]).to eq("<%= human_name %> was successfully created.")
       end
 
@@ -45,7 +45,7 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller do
 
         patch :update, id: <%= singular_table_name %>.id, commit: "Save", <%= singular_table_name %>: <%= singular_table_name %>.attributes
 
-        expect(response).to redirect_to(<%= singular_table_name %>s_path)
+        expect(response).to redirect_to(<%= index_helper %>_path)
         expect(flash[:notice]).to eq("<%= human_name %> was successfully updated.")
       end
 
