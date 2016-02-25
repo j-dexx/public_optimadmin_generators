@@ -10,7 +10,7 @@ RSpec.describe PagePresenter, type: :presenter do
 
   describe 'standard page' do
     it 'returns the linked title' do
-      expect(page_presenter.linked_text(page.title, title: page.title)).to eq(link_to(page.title, page, title: page.title))
+      expect(page_presenter.linked_text(page.title, title: page.title)).to eq(link_to(page.title, view.page_path(page), title: page.title))
     end
 
     it 'returns the content - html escaped' do
