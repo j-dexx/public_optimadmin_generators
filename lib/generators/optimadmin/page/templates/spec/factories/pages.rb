@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :page do
+    sequence(:id) { |n| n }
     title 'Page title'
     style 'basic'
     layout 'application'
