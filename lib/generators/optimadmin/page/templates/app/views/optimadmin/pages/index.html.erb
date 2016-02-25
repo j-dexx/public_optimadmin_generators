@@ -1,5 +1,4 @@
 <%= render 'optimadmin/shared/header/main_title', title: 'Manage Pages' %>
-
 <div class="main-content">
   <div class="row module-header collapse">
     <%= render 'optimadmin/shared/module/index/new_item', title: 'Page', object: Page, path: new_page_path %>
@@ -8,19 +7,14 @@
     <%= render 'optimadmin/shared/module/index/order', options: [['Title', 'title'], ['Display', 'display']] %>
     <%= render 'optimadmin/shared/module/index/recycle_bin', items: @pages.size, path: root_url %>
   </div>
-
   <div class="row collapse module-list-index header">
     <%= list_item 'large-6 small-6' do 'Title' end %>
-
     <%= list_item 'large-2 hide-for-medium-down' do 'Image' end %>
-
     <%= list_item { 'Display' } %>
     <%= list_item { 'View' } %>
     <%= list_item { 'Edit' } %>
-
     <%= list_item 'large-1 hide-for-medium-down text-center last' do 'Delete' end %>
   </div>
-
   <%= render partial: 'page', collection: @pages, as: :page_presenter %>
   <%= paginate @pages %>
 </div>

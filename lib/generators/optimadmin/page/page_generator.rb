@@ -1,12 +1,11 @@
 module Optimadmin
   class PageGenerator < Rails::Generators::Base
-
-    source_root File.expand_path("templates", File.dirname(__FILE__))
+    source_root File.expand_path('templates', File.dirname(__FILE__))
 
     # Begin required methods
 
     def create_seo_table
-      copy_file 'migration.rb', "db/migrate/#{DateTime.now.strftime("%Y%m%d%H%M%S")}_create_pages.rb"
+      copy_file 'migration.rb', "db/migrate/#{DateTime.now.strftime('%Y%m%d%H%M%S')}_create_pages.rb"
     end
 
     def create_app_files
@@ -30,19 +29,19 @@ module Optimadmin
     # Begin admin methods
 
     def add_admin_route
-      insert_into_file "config/routes.rb", admin_routes, after: "Optimadmin::Engine.routes.draw do\n"
+      insert_into_file 'config/routes.rb', admin_routes, after: "Optimadmin::Engine.routes.draw do\n"
     end
 
     def add_to_admin_navigation
-      insert_into_file "app/views/optimadmin/shared/sidebar/_module_links.html.erb", after: "<ul id=\"modules\" class=\"content-category-list\">\n" do
-        "<%= module_link(model: Page, path: pages_path) %>\n"
+      insert_into_file 'app/views/optimadmin/shared/sidebar/_module_links.html.erb', after: "<ul id=\"modules\" class=\"content-category-list\">\n" do
+        "<%= module_link(content: 'Pages', model: Page, path: pages_path) %>\n"
       end
     end
 
     private
 
-      def admin_routes
-        <<-ROUTE.strip_heredoc.indent(2)
+    def admin_routes
+      <<-ROUTE.strip_heredoc.indent(2)
           \n
           resources :pages, except: :show do
             collection do
@@ -58,6 +57,6 @@ module Optimadmin
             end
           end
         ROUTE
-      end
+    end
   end
 end

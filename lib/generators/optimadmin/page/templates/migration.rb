@@ -4,10 +4,10 @@ class CreatePages < ActiveRecord::Migration
       t.string :title, null: false
       t.string :slug, unique: true
       t.string :suggested_url, unique: true
-      t.string :image
+      t.string :image, null: true
       t.string :style, null: false
       t.string :layout, null: false
-      t.boolean :display, default: true
+      t.boolean :display, null: true, default: true
       t.text :content, null: false
 
       t.timestamps null: false

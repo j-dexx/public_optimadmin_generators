@@ -8,8 +8,7 @@ class PagesController < ApplicationController
 
   private
 
-    def set_page
-      @page = Page.displayed.friendly.find(params[:id])
-      @presented_page = PagePresenter.new(object: @page, view_template: view_context)
-    end
+  def set_page
+    @page = Page.displayed.friendly.find(params[:id])
+  end
 end
