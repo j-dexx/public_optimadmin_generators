@@ -1,3 +1,6 @@
-<%= @presented_page.title %>
+<%= inline_editable(@page) %>
 
-<%= @presented_page.content %>
+<% present @page do |page_presenter| %>
+  <%= page_presenter.title %>
+  <%= page_presenter.content %>
+<% end %>

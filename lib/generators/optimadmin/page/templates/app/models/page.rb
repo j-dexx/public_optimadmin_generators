@@ -4,13 +4,16 @@ class Page < ActiveRecord::Base
 
   mount_uploader :image, PageUploader
 
-  before_save :store_image, if: Proc.new{|page| page.remote_image_url.blank? }
+  before_save :store_image, if: proc { |page| page.remote_image_url.blank? }
   # before_save :store_file, if: Proc.new{|page| page.remote_file_url.blank? }
 
   scope :displayed, -> { where(display: true) }
 
   validates :title, :content, presence: true
-  validates :suggested_url, allow_blank: true, uniqueness: { case_sensitive: false, message: 'is already taken, leave blank to generate automatically' }
+  validates :suggested_url, allow_blank: true, uniqueness: {
+    case_sensitive: false,
+    message: 'is already taken, leave blank to generate automatically'
+  }
 
   def slug_candidates
     [
@@ -25,15 +28,15 @@ class Page < ActiveRecord::Base
   end
 
   def route
-    "{:controller => '/pages', :action => 'show', :id => '#{self.slug}'}"
+    "{:controller => '/pages', :action => 'show', :id => '#{slug}'}"
   end
 
   def self.layouts
-    %w{ application }
+    %w( application )
   end
 
   def self.styles
-    %w{ basic }
+    %w( basic )
   end
 
   def store_image

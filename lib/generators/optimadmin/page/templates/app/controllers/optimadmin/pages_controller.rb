@@ -21,7 +21,7 @@ module Optimadmin
     def create
       @page = Page.new(page_params)
       if @page.save
-        redirect_to pages_url, notice: 'Page was successfully created.'
+        redirect_to_index_or_continue_editing(@page)
       else
         render :new
       end
@@ -29,7 +29,7 @@ module Optimadmin
 
     def update
       if @page.update(page_params)
-        redirect_to pages_url, notice: 'Page was successfully updated.'
+        redirect_to_index_or_continue_editing(@page)
       else
         render :edit
       end
@@ -40,15 +40,16 @@ module Optimadmin
       redirect_to pages_url, notice: 'Page was successfully destroyed.'
     end
 
-  private
-
+    private
 
     def set_page
       @page = Page.friendly.find(params[:id])
     end
 
     def page_params
-      params.require(:page).permit(:title, :suggested_url, :image, :image_cache, :remove_image, :remote_image_url, :display, :content, :style, :layout)
+      params.require(:page).permit(:title, :suggested_url, :image,
+                                   :image_cache, :remove_image, :remote_image_url,
+                                   :display, :content, :style, :layout)
     end
   end
 end
