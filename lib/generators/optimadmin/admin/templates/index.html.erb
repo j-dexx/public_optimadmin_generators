@@ -43,13 +43,15 @@
   </div>
 
   <% if attributes.select{|x| x.name == 'position' }.size > 0 %>
-  <div class='module-sortable' data-module="<%= class_name %>">
+  <div class="module-sortable" data-module="<%= class_name %>">
     <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
   </div>
   <% else %>
-  <!-- <div class='module-sortable' data-module="<%= class_name %>"> -->
+  <!-- <div class="module-sortable" data-module="<%= class_name %>"> -->
   <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
   <!-- </div> -->
   <% end %>
+
   <%%= paginate @<%= plural_table_name %> %>
+  <%%= pagination_helper(@<%= plural_table_name %>, '<%= singular_table_name %>') %>
 </div>
