@@ -1,0 +1,28 @@
+<%%= form_for @<%= singular_table_name %>, url: <%= plural_file_name %>_path do |f| %>
+  <%% if @<%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%%= pluralize @<%= singular_table_name %>.errors.count, 'error' %> prevented this message from being sent
+      </h2>
+
+      <ul>
+        <%% @<%= singular_table_name %>.errors.full_messages.each do |msg| %>
+          <li><%%= msg %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+  <div class="contact-details">
+    <% attributes.each do |attribute| -%>
+    <div class="field">
+      <%%= f.label :<%= attribute.column_name %> %><br />
+      <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    </div>
+    <% end -%>
+
+    <div class="actions">
+      <%%= f.submit "Send", class: "submit-button" %>
+    </div>
+  </div>
+<%% end %>

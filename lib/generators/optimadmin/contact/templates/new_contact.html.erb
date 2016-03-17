@@ -1,0 +1,8 @@
+<% attributes.each do |attribute| -%>
+<p>
+  <strong><%= attribute.column_name.humanize %></strong><br />
+
+  <%%= @<%= singular_table_name %>.<%= attribute.column_name %> %>
+</p>
+
+<% end -%>

@@ -44,6 +44,7 @@ Example:
   * optimadmin:seo
   * optimadmin:page
   * optimadmin:error_messages
+  * optimadmin:contact *ModelName* *field_name*:*field_type*
 
 ## Useful links
   [Rails scaffold controller](https://github.com/rails/rails/blob/master/railties/lib/rails/generators/rails/scaffold_controller/templates/controller.rb)
