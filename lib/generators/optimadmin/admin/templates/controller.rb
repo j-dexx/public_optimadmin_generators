@@ -3,7 +3,19 @@ module Optimadmin
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
     def index
-      @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(collection: <%= class_name %>.where('title ILIKE ?', "%#{params[:search]}%").page(params[:page]).per(params[:per_page] || 15), view_template: view_context, presenter: Optimadmin::<%= class_name %>Presenter)
+      <% if attributes.map(&:name).include?('title') %>
+      @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(
+        collection: <%= class_name %>.where('title ILIKE ?', "%#{params[:search]}%")
+                    .page(params[:page]).per(params[:per_page] || 15),
+        view_template: view_context,
+        presenter: Optimadmin::<%= class_name %>Presenter)
+      <% else %>
+      @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(
+        collection: <%= class_name %>.where('<%= attributes.first.name %> ILIKE ?', "%#{params[:search]}%")
+                    .page(params[:page]).per(params[:per_page] || 15),
+        view_template: view_context,
+        presenter: Optimadmin::<%= class_name %>Presenter)
+      <% end %>
     end
 
     def show
@@ -38,8 +50,7 @@ module Optimadmin
       redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %>
     end
 
-  private
-
+    private
 
     def set_<%= singular_table_name %>
       @<%= singular_table_name %> = <%= class_name %>.find(params[:id])

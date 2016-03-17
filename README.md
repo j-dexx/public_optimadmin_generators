@@ -31,6 +31,14 @@ Example:
     This will create all the things above but setup image_field for the image, document_field for the document and all booleans will go into
     the settings section of the form
 
+    For possible data types see optimadmin README.md      
+
+    Forms:
+      Header: title
+      'Content': all except the following:
+      'Media': image, document
+      'Settings': boolean, 'suggested_url'
+
 ### Other generators
 
   * optimadmin:seo

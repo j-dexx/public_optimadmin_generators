@@ -1,15 +1,15 @@
 <%%= form_for(@<%= singular_table_name %>) do |f| %>
-<%% if @<%= singular_table_name %>.errors.any? %>
-  <div id="error_explanation">
-    <h2><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+  <%% if @<%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation">
+      <h2><%%= pluralize(@<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
 
-    <ul>
-      <%% @<%= singular_table_name %>.errors.full_messages.each do |message| %>
-      <li><%%= message %></li>
-      <%% end %>
-    </ul>
-  </div>
-<%% end %>
+      <ul>
+        <%% @<%= singular_table_name %>.errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
 
   <% if attributes.map(&:name).include?('title') %>
   <div class="field">
@@ -31,7 +31,7 @@
     </ul>
 
     <%%= field_set_tag nil, id: 'tabs-1' do %>
-      <% attributes.reject{|x| [:image, :document, :boolean, :date, :datetime ].include?(x.type) }.reject{|x| x.name == 'title' }.each do |attribute| -%>
+      <% attributes.reject{|x| [:image, :document, :boolean, :date, :datetime ].include?(x.type) }.reject{|x| x.name == 'title' || x.name == 'suggested_url' }.each do |attribute| -%>
       <div class="field">
         <%%= f.label :<%= attribute.column_name %> %><br>
         <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
@@ -39,11 +39,11 @@
       <% end -%>
 
       <% attributes.select{|x| x.type == :date }.each do |attribute| -%>
-        <%%= f.datepicker_field :<%= attribute.column_name %> %>
+      <%%= f.datepicker_field :<%= attribute.column_name %> %>
       <% end -%>
 
       <% attributes.select{|x| x.type == :datetime }.each do |attribute| -%>
-        <%%= f.datetimepicker_field :<%= attribute.column_name %> %>
+      <%%= f.datetimepicker_field :<%= attribute.column_name %> %>
       <% end -%>
     <%% end %>
 
@@ -58,6 +58,18 @@
     <%% end %>
 
     <%%= field_set_tag nil, id: 'tabs-3' do %>
+      <% if attributes.map(&:name).include?('suggested_url') %>
+      <div class="field">
+        <%%= f.label :suggested_url %>
+        <%%= module_tooltip(
+            'search engine friendly URL',
+            'This field allows you to customise the URL for search engines. You can leave it blank for it to be automatically generated.'
+            )
+        %><br />
+        <%%= f.text_field :suggested_url %>
+      </div>
+      <% end %>
+
       <% attributes.select{|x| x.type == :boolean }.each do |attribute| -%>
       <div class="field">
         <%%= f.label :<%= attribute.column_name %> %><br>
