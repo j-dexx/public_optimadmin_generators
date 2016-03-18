@@ -4,15 +4,19 @@ module Optimadmin
 
     def index
       <% if attributes.map(&:name).include?('title') %>
+      @<%= plural_table_name %>_items = <%= class_name %>.where('title ILIKE ?', "%#{params[:search]}%")
+                                                         .page(params[:page]).per(params[:per_page] || 15)
+
       @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(
-        collection: <%= class_name %>.where('title ILIKE ?', "%#{params[:search]}%")
-                    .page(params[:page]).per(params[:per_page] || 15),
+        collection: @<%= plural_table_name %>_items,
         view_template: view_context,
         presenter: Optimadmin::<%= class_name %>Presenter)
       <% else %>
+      @<%= plural_table_name %>_items = <%= class_name %>.where('<%= attributes.first.name %> ILIKE ?', "%#{params[:search]}%")
+                                                         .page(params[:page]).per(params[:per_page] || 15)
+
       @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(
-        collection: <%= class_name %>.where('<%= attributes.first.name %> ILIKE ?', "%#{params[:search]}%")
-                    .page(params[:page]).per(params[:per_page] || 15),
+        collection: @<%= plural_table_name %>_items,
         view_template: view_context,
         presenter: Optimadmin::<%= class_name %>Presenter)
       <% end %>
