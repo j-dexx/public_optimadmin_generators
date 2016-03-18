@@ -4,6 +4,13 @@ class <%= class_name %>
 
   validates <%= attributes_names.map { |name| ":#{name}" }.join(', ') %>, presence: true
 
+  <% if attributes.map(&:name).include?('email') %>
+  validates :email, email: true
+  <% end %>
+  <% if attributes.map(&:name).include?('telephone') %>
+  validates :telephone, telephone: true
+  <% end %>
+
   # validate :email_or_telephone
 
   # def email_or_telephone
