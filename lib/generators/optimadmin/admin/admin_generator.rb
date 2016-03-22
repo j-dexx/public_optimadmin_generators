@@ -52,7 +52,7 @@ module Optimadmin
     private
 
     def image_route
-      <<-ROUTE.strip_heredoc.indent(2)
+      <<-ROUTE.strip_heredoc
         resources :#{plural_table_name}, except: [:show] do
           collection do
             post 'order'
@@ -69,7 +69,7 @@ module Optimadmin
     end
 
     def non_image_route
-      <<-ROUTE.strip_heredoc.indent(2)
+      <<-ROUTE.strip_heredoc
         resources :#{plural_table_name}, except: [:show] do
           collection do
             post 'order'
