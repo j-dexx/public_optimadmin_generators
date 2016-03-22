@@ -53,5 +53,5 @@
   <% end %>
 
   <%%= paginate @<%= plural_table_name %> %>
-  <%%= pagination_helper(@<%= plural_table_name %>_items, '<%= singular_table_name.humanize.downcase %>') %>
+  <%%= pagination_helper(@<%= singular_table_name %>_items, '<%= singular_table_name.humanize.downcase %>') %>
 </div>
