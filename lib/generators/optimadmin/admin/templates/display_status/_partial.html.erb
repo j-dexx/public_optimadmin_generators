@@ -1,0 +1,39 @@
+<div class="row collapse module-list-index <%%= cycle('odd', 'even') %>" data-equalizer="module-list" id="item_<%%= <%= singular_table_name %>_presenter.id %>">
+  <% unless attributes.select{|x| x.name == 'position' }.size.zero? -%>
+    <div class="large-1 hide-for-medium-down columns" data-equalizer-watch="module-list">
+      <span class="drag-helper"></span>
+    </div>
+  <% end -%>
+
+  <% if attributes.select{|x| x.name == 'position' }.size > 0 -%>
+    <div class="large-6 small-8 columns" data-equalizer-watch="module-list">
+  <% else -%>
+    <div class="large-7 small-8 columns" data-equalizer-watch="module-list">
+  <% end -%>
+    <%%= <%= singular_table_name %>_presenter.toggle_title %>
+  </div>
+
+  <% unless attributes.select{|x| x.type == :image }.size.zero? -%>
+    <div class="large-2 hide-for-medium-down columns" data-equalizer-watch="module-list">
+      <%%= <%= singular_table_name %>_presenter.edit_image(:image) %>
+    </div>
+  <% end -%>
+
+  <div class="large-1 small-4 columns" data-equalizer-watch="module-list">
+    <%%= <%= singular_table_name %>_presenter.view_link %>
+  </div>
+
+  <div class="large-1 small-4 columns" data-equalizer-watch="module-list">
+    <%%= <%= singular_table_name %>_presenter.edit_link %>
+  </div>
+
+  <div class="large-1 hide-for-medium-down columns last" data-equalizer-watch="module-list">
+    <%%= <%= singular_table_name %>_presenter.delete_link %>
+  </div>
+
+  <div class="row module-list-detail hide" id="index-list-<%%= <%= singular_table_name %>_presenter.id %>">
+    <div class="small-12 columns module-list-summary last">
+      <%%= <%= singular_table_name %>_presenter.optimadmin_summary %>
+    </div>
+  </div>
+</div>

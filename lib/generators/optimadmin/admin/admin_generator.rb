@@ -6,15 +6,29 @@ module Optimadmin
     source_root File.expand_path('../templates', __FILE__)
 
     def generate_controller
-      template 'controller.rb', "app/controllers/optimadmin/#{plural_file_name}_controller.rb"
+      if attributes.map(&:name).include?('display')
+        template 'display_toggle/controller.rb', "app/controllers/optimadmin/#{plural_file_name}_controller.rb"
+      elsif attributes.map(&:name).include?('publish_at') &&
+            attributes.map(&:name).include?('expire_at')
+        template 'display_status/controller.rb', "app/controllers/optimadmin/#{plural_file_name}_controller.rb"
+        template 'display_status/expired_controller.rb', "app/controllers/optimadmin/#{plural_file_name}/expired_controller.rb"
+        template 'display_status/published_controller.rb', "app/controllers/optimadmin/#{plural_file_name}/published_controller.rb"
+        template 'display_status/scheduled_controller.rb', "app/controllers/optimadmin/#{plural_file_name}/scheduled_controller.rb"
+      end
     end
 
     def generate_views
       template '_form.html.erb', "app/views/optimadmin/#{plural_file_name}/_form.html.erb"
-      template 'index.html.erb', "app/views/optimadmin/#{plural_file_name}/index.html.erb"
       template 'new.html.erb', "app/views/optimadmin/#{plural_file_name}/new.html.erb"
       template 'edit.html.erb', "app/views/optimadmin/#{plural_file_name}/edit.html.erb"
-      template '_partial.html.erb', "app/views/optimadmin/#{plural_file_name}/_#{singular_table_name}.html.erb"
+      if attributes.map(&:name).include?('display')
+        template 'display_toggle/index.html.erb', "app/views/optimadmin/#{plural_file_name}/index.html.erb"
+        template 'display_toggle/_partial.html.erb', "app/views/optimadmin/#{plural_file_name}/_#{singular_table_name}.html.erb"
+      elsif attributes.map(&:name).include?('publish_at') &&
+            attributes.map(&:name).include?('expire_at')
+        template 'display_status/index.html.erb', "app/views/optimadmin/#{plural_file_name}/index.html.erb"
+        template 'display_status/_partial.html.erb', "app/views/optimadmin/#{plural_file_name}/_#{singular_table_name}.html.erb"
+      end
     end
 
     def generate_admin_presenter
@@ -47,9 +61,22 @@ module Optimadmin
           non_image_route
         end
       end
+
+      if attributes.map(&:name).include?('publish_at') &&
+         attributes.map(&:name).include?('expire_at')
+        insert_into_file 'config/routes.rb', display_status_routes, after: "resources :#{plural_table_name}, except: [:show] do\n  collection do\n"
+      end
     end
 
     private
+
+    def display_status_routes
+      <<-ROUTE.strip_heredoc
+        resources :expired, as: 'expired_#{plural_table_name}', to: '#{plural_table_name}/expired'
+        resources :scheduled, as: 'scheduled_#{plural_table_name}', to: '#{plural_table_name}/scheduled'
+        resources :published, as: 'published_#{plural_table_name}', to: '#{plural_table_name}/published'
+      ROUTE
+    end
 
     def image_route
       <<-ROUTE.strip_heredoc
