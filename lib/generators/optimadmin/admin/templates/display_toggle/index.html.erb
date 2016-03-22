@@ -10,31 +10,31 @@
   </div>
 
   <div class="row collapse module-list-index header">
-    <% unless attributes.select{|x| x.name == 'position' }.size.zero? %>
+    <% unless attributes.select{|x| x.name == 'position' }.size.zero? -%>
     <%%= list_item 'large-1 hide-for-medium-down' do %>
       <%%= link_to octicon('settings') %>
     <%% end %>
-    <% end %>
+    <% end -%>
 
-    <% if attributes.select{|x| x.type == :image }.size.zero? %>
+    <% if attributes.select{|x| x.type == :image }.size.zero? -%>
     <%% # ADD TWO TO THE TITLE LARGE COLUMN SIZE BELOW TO ACCOUNT FOR NO IMAGE %>
-    <% end %>
+    <% end -%>
 
-    <% if attributes.select{|x| x.name == 'position' }.size > 0 %>
+    <% if attributes.select{|x| x.name == 'position' }.size > 0 -%>
     <%%= list_item 'large-5 small-8' do %>
       <%%= link_to octicon('chevron-down'), '#', class: 'helper-link index-list-expand-all', data: { this_class: 'octicon-chevron-up octicon-chevron-down' } %>
       Title
     <%% end %>
-    <% else %>
+    <% else -%>
     <%%= list_item 'large-6 small-8' do %>
       <%%= link_to octicon('chevron-down'), '#', class: 'helper-link index-list-expand-all', data: { this_class: 'octicon-chevron-up octicon-chevron-down' } %>
       Title
     <%% end %>
-    <% end %>
+    <% end -%>
 
-    <% unless attributes.select{|x| x.type == :image }.size.zero? %>
+    <% unless attributes.select{|x| x.type == :image }.size.zero? -%>
     <%%= list_item('large-2 hide-for-medium-down') { 'Image' } %>
-    <% end %>
+    <% end -%>
 
     <%%= list_item { 'Display' } %>
     <%%= list_item { 'View' } %>
@@ -42,16 +42,16 @@
     <%%= list_item('large-1 hide-for-medium-down text-center last') { 'Delete' } %>
   </div>
 
-  <% if attributes.select{|x| x.name == 'position' }.size > 0 %>
+  <% if attributes.select{|x| x.name == 'position' }.size > 0 -%>
   <div class="module-sortable" data-module="<%= class_name %>">
     <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
   </div>
-  <% else %>
+  <% else -%>
   <!-- <div class="module-sortable" data-module="<%= class_name %>"> -->
   <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
   <!-- </div> -->
-  <% end %>
+  <% end -%>
 
   <%%= paginate @<%= plural_table_name %> %>
-  <%%= pagination_helper(@<%= plural_table_name %>_items, '<%= singular_table_name.humanize.downcase %>') %>
+  <%%= pagination_helper(@pagination_helper, '<%= singular_table_name.humanize.downcase %>') %>
 </div>

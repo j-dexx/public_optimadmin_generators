@@ -11,12 +11,12 @@
     </div>
   <%% end %>
 
-  <% if attributes.map(&:name).include?('title') %>
+  <% if attributes.map(&:name).include?('title') -%>
   <div class="field">
     <%%= f.label :title %><br />
     <%%= f.text_field :title %>
   </div>
-  <% end %>
+  <% end -%>
 
   <div class="tabs prevent-flash">
     <ul class="tab-list">
@@ -42,7 +42,7 @@
       <%%= f.datepicker_field :<%= attribute.column_name %> %>
       <% end -%>
 
-      <% attributes.select{|x| x.type == :datetime }.each do |attribute| -%>
+      <% attributes.select{|x| x.type == :datetime }.reject{|x| x.name == 'publish_at' || x.name == 'expire_at' }.each do |attribute| -%>
       <%%= f.datetimepicker_field :<%= attribute.column_name %> %>
       <% end -%>
     <%% end %>
@@ -58,17 +58,14 @@
     <%% end %>
 
     <%%= field_set_tag nil, id: 'tabs-3' do %>
-      <% if attributes.map(&:name).include?('suggested_url') %>
-      <div class="field">
-        <%%= f.label :suggested_url %>
-        <%%= module_tooltip(
-            'search engine friendly URL',
-            'This field allows you to customise the URL for search engines. You can leave it blank for it to be automatically generated.'
-            )
-        %><br />
-        <%%= f.text_field :suggested_url %>
-      </div>
-      <% end %>
+      <% if attributes.map(&:name).include?('suggested_url') -%>
+      <%%= render 'optimadmin/shared/suggested_url_field', f: f %>
+      <% end -%>
+
+      <% if attributes.map(&:name).include?('publish_at') &&
+            attributes.map(&:name).include?('expire_at') -%>
+      <%%= render 'optimadmin/shared/display_status_field', f: f %>
+      <% end -%>
 
       <% attributes.select{|x| x.type == :boolean }.each do |attribute| -%>
       <div class="field">

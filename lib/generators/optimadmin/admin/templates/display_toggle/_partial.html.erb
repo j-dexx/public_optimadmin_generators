@@ -5,19 +5,19 @@
     </div>
   <% end %>
 
-  <% if attributes.select{|x| x.name == 'position' }.size > 0 %>
+  <% if attributes.select{|x| x.name == 'position' }.size > 0 -%>
     <div class="large-5 small-8 columns" data-equalizer-watch="module-list">
-  <% else %>
+  <% else -%>
     <div class="large-6 small-8 columns" data-equalizer-watch="module-list">
-  <% end %>
+  <% end -%>
     <%%= <%= singular_table_name %>_presenter.toggle_title %>
   </div>
 
-  <% unless attributes.select{|x| x.type == :image }.size.zero? %>
+  <% unless attributes.select{|x| x.type == :image }.size.zero? -%>
     <div class="large-2 hide-for-medium-down columns" data-equalizer-watch="module-list">
       <%%= <%= singular_table_name %>_presenter.edit_image(:image) %>
     </div>
-  <% end %>
+  <% end -%>
 
   <div class="large-1 small-4 columns" data-equalizer-watch="module-list">
     <%%= <%= singular_table_name %>_presenter.toggle_link %>

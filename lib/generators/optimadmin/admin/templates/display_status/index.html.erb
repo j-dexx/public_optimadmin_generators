@@ -1,0 +1,66 @@
+<%%= render 'optimadmin/shared/header/main_title', title: 'Manage <%= plural_table_name.titleize %>' %>
+
+<div class="main-content">
+  <div class="row module-header collapse">
+    <%%= render 'optimadmin/shared/module/index/new_item', title: '<%= singular_table_name.titleize %>', object: <%= class_name %>, path: new_<%= singular_table_name %>_path %>
+    <%%= render 'optimadmin/shared/search_form' %>
+    <%%= render 'optimadmin/shared/module/index/pagination' %>
+    <!-- <%%= render 'optimadmin/shared/module/index/order', options: [['Title', 'title', 'Display', 'display']] %> -->
+    <%%= render 'optimadmin/shared/module/index/recycle_bin', items: @<%= plural_table_name %>.size, path: root_url %>
+  </div>
+
+  <div class="tabs prevent-flash">
+    <%%= render 'optimadmin/shared/module/index/display_status_navigation', object: <%= class_name %> %>
+
+    <div id="tabs-1">
+      <div class="row collapse module-list-index header">
+        <% unless attributes.select{|x| x.name == 'position' }.size.zero? -%>
+        <%%= list_item 'large-1 hide-for-medium-down' do %>
+          <%%= link_to octicon('settings') %>
+        <%% end %>
+        <% end -%>
+
+        <% if attributes.select{|x| x.type == :image }.size.zero? -%>
+        <%% # ADD TWO TO THE TITLE LARGE COLUMN SIZE BELOW TO ACCOUNT FOR NO IMAGE %>
+        <% end -%>
+
+        <% if attributes.select{|x| x.name == 'position' }.size > 0 -%>
+        <%%= list_item 'large-6 small-8' do %>
+          <%%= link_to octicon('chevron-down'), '#', class: 'helper-link index-list-expand-all', data: { this_class: 'octicon-chevron-up octicon-chevron-down' } %>
+          Title
+        <%% end %>
+        <% else -%>
+        <%%= list_item 'large-7 small-8' do %>
+          <%%= link_to octicon('chevron-down'), '#', class: 'helper-link index-list-expand-all', data: { this_class: 'octicon-chevron-up octicon-chevron-down' } %>
+          Title
+        <%% end %>
+        <% end -%>
+
+        <% unless attributes.select{|x| x.type == :image }.size.zero? -%>
+        <%%= list_item('large-2 hide-for-medium-down') { 'Image' } %>
+        <% end -%>
+
+        <%%= list_item { 'View' } %>
+        <%%= list_item { 'Edit' } %>
+        <%%= list_item('large-1 hide-for-medium-down text-center last') { 'Delete' } %>
+      </div>
+
+      <% if attributes.select{|x| x.name == 'position' }.size > 0 -%>
+      <div class="module-sortable" data-module="<%= class_name %>">
+        <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
+      </div>
+      <% else -%>
+      <!-- <div class="module-sortable" data-module="<%= class_name %>"> -->
+      <%%= render partial: '<%= singular_table_name %>', collection: @<%= plural_table_name %>, as: :<%= singular_table_name %>_presenter %>
+      <!-- </div> -->
+      <% end -%>
+
+      <%%= paginate @<%= plural_table_name %> %>
+      <%%= pagination_helper(@pagination_helper, '<%= singular_table_name.humanize.downcase %>') %>
+    </div>
+
+    <%%= content_tag :div, (image_tag 'optimadmin/vendor/slick/ajax-loader.gif'), id: 'tabs-2' %>
+    <%%= content_tag :div, (image_tag 'optimadmin/vendor/slick/ajax-loader.gif'), id: 'tabs-3' %>
+    <%%= content_tag :div, (image_tag 'optimadmin/vendor/slick/ajax-loader.gif'), id: 'tabs-4' %>
+  </div>
+</div>
