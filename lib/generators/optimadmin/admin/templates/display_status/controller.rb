@@ -10,7 +10,7 @@ module Optimadmin
       @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(
         collection: @pagination_helper,
         view_template: view_context,
-        presenter: Optimadmin::ArticleCategoryPresenter
+        presenter: Optimadmin::<%= class_name %>Presenter
       )
     end
 
