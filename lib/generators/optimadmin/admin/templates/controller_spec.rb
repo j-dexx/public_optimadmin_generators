@@ -16,8 +16,8 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller, <
           commit: 'Save'
         }
 
-        expect(response).to redirect_to(<%= singular_table_name %>s_path)
-        expect(flash[:notice]).to eq('<%= class_name %> was successfully created.')
+        expect(response).to redirect_to(<%= plural_table_name %>_path)
+        expect(flash[:notice]).to eq('<%= human_name %> was successfully created.')
       end
 
       it 'redirects to edit on save and continue editing' do
@@ -29,7 +29,7 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller, <
         }
 
         expect(response).to redirect_to(edit_<%= singular_table_name %>_path(<%= singular_table_name %>))
-        expect(flash[:notice]).to eq('<%= class_name %> was successfully created.')
+        expect(flash[:notice]).to eq('<%= human_name %> was successfully created.')
       end
     end
 
@@ -58,8 +58,8 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller, <
           commit: 'Save'
         }
 
-        expect(response).to redirect_to(<%= singular_table_name %>s_path)
-        expect(flash[:notice]).to eq('<%= class_name %> was successfully updated.')
+        expect(response).to redirect_to(<%= plural_table_name %>_path)
+        expect(flash[:notice]).to eq('<%= human_name %> was successfully updated.')
       end
 
       it 'redirects to edit on save and continue editing' do
@@ -72,7 +72,7 @@ describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller, <
         }
 
         expect(response).to redirect_to(edit_<%= singular_table_name %>_path(<%= singular_table_name %>))
-        expect(flash[:notice]).to eq('<%= class_name %> was successfully updated.')
+        expect(flash[:notice]).to eq('<%= human_name %> was successfully updated.')
       end
     end
 
