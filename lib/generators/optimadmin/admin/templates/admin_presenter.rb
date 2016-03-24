@@ -1,6 +1,7 @@
 module Optimadmin
   class <%= class_name %>Presenter
     include Optimadmin::PresenterMethods
+
     presents :<%= singular_table_name %>
     delegate :id, :title, to: :<%= singular_table_name %>
 
