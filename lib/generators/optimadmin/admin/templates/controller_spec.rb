@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Optimadmin::<%= class_name.pluralize %>sController, type: :controller, <%= singular_table_name %>: true do
+describe Optimadmin::<%= class_name.pluralize %>Controller, type: :controller, <%= singular_table_name %>: true do
   routes { Optimadmin::Engine.routes }
   before(:each) do
     sign_in

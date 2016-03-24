@@ -6,14 +6,14 @@ module Optimadmin
     source_root File.expand_path('../templates', __FILE__)
 
     def generate_controller
-      if attributes.map(&:name).include?('display')
-        template 'display_toggle/controller.rb', "app/controllers/optimadmin/#{plural_file_name}_controller.rb"
-      elsif attributes.map(&:name).include?('publish_at') &&
-            attributes.map(&:name).include?('expire_at')
+      if attributes.map(&:name).include?('publish_at') &&
+         attributes.map(&:name).include?('expire_at')
         template 'display_status/controller.rb', "app/controllers/optimadmin/#{plural_file_name}_controller.rb"
         template 'display_status/expired_controller.rb', "app/controllers/optimadmin/#{plural_file_name}/expired_controller.rb"
         template 'display_status/published_controller.rb', "app/controllers/optimadmin/#{plural_file_name}/published_controller.rb"
         template 'display_status/scheduled_controller.rb', "app/controllers/optimadmin/#{plural_file_name}/scheduled_controller.rb"
+      else
+        template 'display_toggle/controller.rb', "app/controllers/optimadmin/#{plural_file_name}_controller.rb"
       end
     end
 
