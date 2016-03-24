@@ -72,9 +72,9 @@ module Optimadmin
 
     def display_status_routes
       <<-ROUTE.strip_heredoc
-        resources :expired, as: 'expired_#{plural_table_name}', to: '#{plural_table_name}/expired'
-        resources :scheduled, as: 'scheduled_#{plural_table_name}', to: '#{plural_table_name}/scheduled'
-        resources :published, as: 'published_#{plural_table_name}', to: '#{plural_table_name}/published'
+        resources :expired, as: 'expired_#{plural_table_name}', controller: '#{plural_table_name}/expired'
+        resources :scheduled, as: 'scheduled_#{plural_table_name}', controller: '#{plural_table_name}/scheduled'
+        resources :published, as: 'published_#{plural_table_name}', controller: '#{plural_table_name}/published'
       ROUTE
     end
 
