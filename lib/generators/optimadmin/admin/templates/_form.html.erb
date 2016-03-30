@@ -31,7 +31,7 @@
     </ul>
 
     <%%= field_set_tag nil, id: 'tabs-1' do %>
-      <% attributes.reject{|x| [:image, :document, :boolean, :date, :datetime ].include?(x.type) }.reject{|x| x.name == 'title' || x.name == 'suggested_url' }.each do |attribute| -%>
+      <% attributes.reject{|x| [:image, :document, :boolean, :date, :datetime ].include?(x.type) }.reject{|x| x.name == 'title' || x.name == 'suggested_url' || x.name == 'social_share_description' || x.name == 'social_share_title' }.each do |attribute| -%>
       <div class="field">
         <%%= f.label :<%= attribute.column_name %> %><br>
         <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %><%= ", class: '#{'tinymce'}'" if attribute.type == :text %> %>
@@ -54,6 +54,13 @@
 
       <% attributes.select{|x| x.type == :document }.each do |attribute| -%>
       <%%= f.document_field :<%= attribute.column_name %> %>
+      <% end -%>
+
+      <% attributes.select{|x| x.name == 'social_share_description' || x.name == 'social_share_title' }.each do |attribute| -%>
+      <div class="field">
+        <%%= f.label :<%= attribute.column_name %> %><br>
+        <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+      </div>
       <% end -%>
     <%% end %>
 
