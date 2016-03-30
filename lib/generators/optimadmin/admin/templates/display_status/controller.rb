@@ -65,8 +65,7 @@ module Optimadmin
       params[:<%= singular_table_name %>]
       <%- else -%>
       params.require(:<%= singular_table_name %>)
-            .permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %><%= ', ' if attributes.select{|x| x.type == :image }.size >= 1 %>
-            <%= attributes.select{|x| x.type == :image }.map { |x| ":remove_#{x.name}, :remote_#{x.name}_url, :#{x.name}_cache" }.join(', ') %>)
+            .permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %><%= ', ' if attributes.select{|x| x.type == :image }.size >= 1 %><%= attributes.select{|x| x.type == :image }.map { |x| ":remove_#{x.name}, :remote_#{x.name}_url, :#{x.name}_cache" }.join(', ') %>)
       <%- end -%>
     end
   end
