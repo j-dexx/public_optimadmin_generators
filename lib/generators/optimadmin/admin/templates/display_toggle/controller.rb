@@ -3,10 +3,16 @@ module Optimadmin
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
     def index
-      @pagination_helper = <%= class_name %>.field_order(params[:order])
-                                            .field_search(params[:search])
-                                            .pagination(params[:page], params[:per_page])
-
+      <% if attributes.map(&:name).include?('title') -%>
+        @pagination_helper = <%= class_name %>.field_order(params[:order])
+                                              .field_search(params[:search])
+                                              .pagination(params[:page], params[:per_page])
+      <% else -%>
+        @pagination_helper = <%= class_name %>.field_order(params[:order])
+                                              .field_search(params[:search], "#{attributes.first.name}")
+                                              .pagination(params[:page], params[:per_page])
+      <% end -%>
+      
       @<%= plural_table_name %> = Optimadmin::BaseCollectionPresenter.new(
         collection: @pagination_helper,
         view_template: view_context,

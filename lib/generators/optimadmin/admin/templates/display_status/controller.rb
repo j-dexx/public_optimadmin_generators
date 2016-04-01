@@ -49,8 +49,13 @@ module Optimadmin
     private
 
     def display_status
-      @all_items = <%= class_name %>.field_order(params[:order])
-                                    .field_search(params[:search])
+      <% if attributes.map(&:name).include?('title') -%>
+        @all_items = <%= class_name %>.field_order(params[:order])
+                                      .field_search(params[:search])
+      <% else -%>
+        @all_items = <%= class_name %>.field_order(params[:order])
+                                      .field_search(params[:search], "#{attributes.first.name}")
+      <% end -%>
       @scheduled_items = @all_items.scheduled
       @published_items = @all_items.published
       @expired_items   = @all_items.expired
