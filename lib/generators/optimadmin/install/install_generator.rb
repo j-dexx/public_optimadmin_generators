@@ -61,7 +61,7 @@ module Optimadmin
     end
 
     def set_time_zone
-      insert_into_file 'config/application.rb', after: "config.exceptions_app = self.routes\n" do
+      insert_into_file 'config/application.rb', after: "class Application < Rails::Application\n" do
         <<-TIMEZONE.strip_heredoc.indent(4)
         config.time_zone = 'London'
         config.active_record.default_timezone = :local
