@@ -36,7 +36,7 @@ module Optimadmin
     end
 
     def generate_presenter
-      template 'presenter.rb', "app/presenters/#{singular_table_name}_presenter.rb"
+      # template 'presenter.rb', "app/presenters/#{singular_table_name}_presenter.rb"
     end
 
     def generate_controller_spec
@@ -44,7 +44,7 @@ module Optimadmin
     end
 
     def generate_presenter_spec
-      template 'presenter_spec.rb', "spec/presenters/#{singular_table_name}_presenter_spec.rb"
+      # template 'presenter_spec.rb', "spec/presenters/#{singular_table_name}_presenter_spec.rb"
     end
 
     def add_to_module_links
@@ -55,10 +55,10 @@ module Optimadmin
 
     def create_route
       insert_into_file 'config/routes.rb', after: "Optimadmin::Engine.routes.draw do\n" do
-        unless attributes.count { |x| x.type == :image }.zero?
-          image_route
-        else
+        if attributes.count { |x| x.type == :image }.zero?
           non_image_route
+        else
+          image_route
         end
       end
 
