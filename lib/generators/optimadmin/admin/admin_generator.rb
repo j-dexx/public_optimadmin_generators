@@ -35,17 +35,17 @@ module Optimadmin
       template 'admin_presenter.rb', "app/presenters/optimadmin/#{singular_table_name}_presenter.rb"
     end
 
-    def generate_presenter
-      # template 'presenter.rb', "app/presenters/#{singular_table_name}_presenter.rb"
-    end
+    # def generate_presenter
+    # template 'presenter.rb', "app/presenters/#{singular_table_name}_presenter.rb"
+    # end
 
     def generate_controller_spec
       template 'controller_spec.rb', "spec/controllers/optimadmin/#{singular_table_name}_controller_spec.rb"
     end
 
-    def generate_presenter_spec
-      # template 'presenter_spec.rb', "spec/presenters/#{singular_table_name}_presenter_spec.rb"
-    end
+    # def generate_presenter_spec
+    # template 'presenter_spec.rb', "spec/presenters/#{singular_table_name}_presenter_spec.rb"
+    # end
 
     def add_to_module_links
       insert_into_file 'app/views/optimadmin/shared/sidebar/_module_links.html.erb', after: "<ul id=\"modules\" class=\"content-category-list\">\n" do
